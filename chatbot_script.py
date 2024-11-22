@@ -1,6 +1,6 @@
+# BEFORE RUNNING THIS BOT REFER TO THE README FILE FOR INSTRUCTIONS
 # This is a chatbot that people can ask simple questions to learn more about me.
 # I will be user a question answering AI model from the Hugging Face Transformers library to do this. 
-# Users can refer to the README.md file for more information on how to use this chatbot.
 
 # Import the dataset
 import json
@@ -17,6 +17,7 @@ Kayden is {kayden_data['age']} years old.
 Kayden's major is {kayden_data['major']}.
 Kayden is a {kayden_data['year']}.set
 Kayden's hobbies are {kayden_data['hobbies']}.
+Kayden doesn't have a favorite food.
 Kayden's job is {kayden_data['job']}.
 Kayden goes to school at {kayden_data['school']}.
 Kayden's hometown is {kayden_data['hometown']}.
@@ -34,19 +35,21 @@ def chatbot(prompt):
     print("Hello! I am a chatbot. You can ask me questions about Kayden.")
     response = qa_pipeline(question=prompt, context=context)
     answer = response['answer']
+    score = response['score']
 
-    # Check if the question is relevent to the context
-    if answer.lower() in context.lower() and len(answer) > 0:
+    # Set a confidence threshold
+    confidence_threshold = 0.5
+
+    # Check if the answer is relative to the context and above the confidence threshold
+    if score >= confidence_threshold and len(answer) > 0 and any(word in context.lower() for word in answer.lower().split()):
         return answer
-    else: 
-        raise ValueError("I'm sorry, I do not have an answer to that question. Please ask me something else.")
+    else:
+        return "I'm sorry, I do not have an answer to that question. Please ask me something else."
 
-
+# Run the chatbot
 while True:
     user_input = input("Ask a question (or type 'quit' to exit): ")
     if user_input.lower() == 'quit':
         break
-    try:
+    else:
         print(chatbot(user_input))
-    except ValueError as e:
-        print(e)

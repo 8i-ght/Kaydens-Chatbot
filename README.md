@@ -1,7 +1,7 @@
 # Kayden's Chatbot
 
 This is Kayden's Chatbot, a simple question-answering chatbot powered by the Hugging Face Transformers library.
-Users can ask the bot questions to learn more about Kayden, including his hobbies, major, school and more. 
+Users can ask the bot questions to learn more about Kayden, including his hobbies, major, school and more. The user can also refer to the context or data_set for ideas of questions. 
 The chatbot is using a pre-trained NLP model to understand and respond to user questions.
 
 ## Features
@@ -18,6 +18,7 @@ To run this chatbot, ensure you have the following installed:
 1. Python 3.7 or higher.
 2. Required Python libraries:
  - `transformers`
+ - `PyTorch or TensorFlow`
 
 You can install the required libraries using:
 
