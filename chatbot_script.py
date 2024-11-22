@@ -1,6 +1,6 @@
 # BEFORE RUNNING THIS BOT REFER TO THE README FILE FOR INSTRUCTIONS
 # This is a chatbot that people can ask simple questions to learn more about me.
-# I will be user a question answering AI model from the Hugging Face Transformers library to do this. 
+# I will be using a question answering AI model from the Hugging Face Transformers library to do this. 
 
 # Import the dataset
 import json
@@ -9,6 +9,9 @@ from transformers import pipeline
 # Load the dataset
 with open('kayden_data.json', 'r') as file:
     kayden_data = json.load(file)
+
+# Convert the hobbies list to a string
+# hobbies_str = ', '. join(kayden_data['hobbies'])
 
 # Create the context
 context = f"""
@@ -25,6 +28,7 @@ Kayden's email is {kayden_data['email']}.
 Kayden's phonenumber is {kayden_data['phonenumber']}.
 Kayden's socials are found at {kayden_data['socials']}.
 Kayden's projects are found at {kayden_data['projects']}.
+Kayden's resume is {kayden_data['resume']}.
 """
 
 # Create the question answering pipeline
@@ -32,16 +36,20 @@ qa_pipeline = pipeline('question-answering', model='distilbert-base-uncased-dist
 
 # Define the chatbot function
 def chatbot(prompt):
-    print("Hello! I am a chatbot. You can ask me questions about Kayden.")
     response = qa_pipeline(question=prompt, context=context)
     answer = response['answer']
     score = response['score']
 
+    print(f"Question: {prompt}")
+    print(f"Answer: {answer}")
+    print(f"Score: {score}")
+
     # Set a confidence threshold
-    confidence_threshold = 0.5
+    confidence_threshold = 0.3
 
     # Check if the answer is relative to the context and above the confidence threshold
-    if score >= confidence_threshold and len(answer) > 0 and any(word in context.lower() for word in answer.lower().split()):
+    # If score is above confidence threshold return answer else return error string
+    if score >= confidence_threshold:
         return answer
     else:
         return "I'm sorry, I do not have an answer to that question. Please ask me something else."
