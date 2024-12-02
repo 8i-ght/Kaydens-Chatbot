@@ -17,12 +17,13 @@ To run this chatbot, ensure you have the following installed:
 
 1. Python 3.7 or higher.
 2. Required Python libraries:
- - `transformers`
  - `PyTorch or TensorFlow`
+ - `transformers`
 
 You can install the required libraries using:
 
-```bash 
+```bash
+pip install PyTorch
 pip install transformers
 ```
 
