@@ -1,6 +1,8 @@
 {
     "name": "Kayden Roberts",
     "age": 18,
+    "gender": "male",
+    "race": "white",
     "major": "Computer Science",
     "year": "Freshman",
     "hobbies": ["Video Games", "Coding", "Working Out"],

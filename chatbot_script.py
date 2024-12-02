@@ -11,12 +11,14 @@ with open('kayden_data.json', 'r') as file:
     kayden_data = json.load(file)
 
 # Convert the hobbies list to a string
-# hobbies_str = ', '. join(kayden_data['hobbies'])
+hobbies_str = ', '. join(kayden_data['hobbies'])
 
 # Create the context
 context = f"""
 Kayden's name is {kayden_data['name']}.
 Kayden is {kayden_data['age']} years old.
+Kayden is a {kayden_data['gender']}.
+Kayden's race is {kayden_data['race']}.
 Kayden's major is {kayden_data['major']}.
 Kayden is a {kayden_data['year']}.set
 Kayden's hobbies are {kayden_data['hobbies']}.
