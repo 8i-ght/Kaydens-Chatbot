@@ -1,8 +1,8 @@
 {
     "name": "Kayden Roberts",
     "age": 18,
-    "gender": "male",
-    "race": "white",
+    "gender": "Male",
+    "race": "White",
     "major": "Computer Science",
     "year": "Freshman",
     "hobbies": ["Video Games", "Coding", "Working Out"],
@@ -10,7 +10,7 @@
     "school": "Southeast Missouri State University",
     "hometown": "Cape Girardeau, MO",
     "email": "keroberts3545@gmail.com",
-    "phonenumber": "send me an email if your interested :)",
+    "phonenumber": "Not Public, use email",
     "socials": {
         "facebook": "https://www.facebook.com/profile.php?id=100080181656284",
         "instagram": "https://www.instagram.com/kayden_2727/",
