@@ -11,6 +11,7 @@ with open('kayden_data.json', 'r') as file:
     kayden_data = json.load(file)
 
 # Convert the hobbies list to a string
+# The chatbot has more confidence on a string rather than list 
 hobbies_str = ', '. join(kayden_data['hobbies'])
 
 # Create the context
@@ -21,7 +22,7 @@ Kayden is a {kayden_data['gender']}.
 Kayden's race is {kayden_data['race']}.
 Kayden's major is {kayden_data['major']}.
 Kayden is a {kayden_data['year']}.set
-Kayden's hobbies are {kayden_data['hobbies']}.
+Kayden's hobbies are {hobbies_str}.
 Kayden doesn't have a favorite food.
 Kayden's job is {kayden_data['job']}.
 Kayden goes to school at {kayden_data['school']}.
@@ -38,7 +39,9 @@ qa_pipeline = pipeline('question-answering', model='distilbert-base-uncased-dist
 
 # Define the chatbot function
 def chatbot(prompt):
+    # Use the question answering pipeline to get response 
     response = qa_pipeline(question=prompt, context=context)
+    # Extract answer and score from response
     answer = response['answer']
     score = response['score']
 
@@ -47,7 +50,7 @@ def chatbot(prompt):
     print(f"Score: {score}")
 
     # Set a confidence threshold
-    confidence_threshold = 0.3
+    confidence_threshold = 0.24
 
     # Check if the answer is relative to the context and above the confidence threshold
     # If score is above confidence threshold return answer else return error string
@@ -62,4 +65,4 @@ while True:
     if user_input.lower() == 'quit':
         break
     else:
-        print(chatbot(user_input))
+        print(f"Actual Answer: {chatbot(user_input)}")
