@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+body {
+    background-color: #121212;
+    color: #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    background-color: #1E1E1E;
+    border: 1px solid #333333;
+    padding: 20px;
+    margin-top: 5px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.118);
+    width: 75%;
+}
+
+.chat-header {
+    font-family: 'Lilita One', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.chat-subhead {
+    font-family: 'Lilita One', sans-serif;
+    display: flex;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.chat-container input {
+    background-color: #1E1E1E;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #333333;
+    border-radius: 5px 0 0 5px;
+    text-align: center;
+    color: #E0E0E0;
+    font-size: 15px;
+}
+
+#send-button {
+    background: none;
+    border: 1px solid #333333;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    font-size: 21.1px;
+    cursor: pointer;
+    padding: 5px;
+    color: #E0E0E0;
+}
