@@ -30,5 +30,5 @@ pip install transformers
 ## Future Plans
 
  - Make the chatbot more accessible
-    - Make it into a website using either Flash or Django
+    - Make it into a website using either Flask or Django
  - Add more onto the dataset
