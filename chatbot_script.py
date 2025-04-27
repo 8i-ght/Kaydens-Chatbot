@@ -4,7 +4,12 @@
 
 # Import the dataset
 import json
+from flask import Flask, request, jsonify
 from transformers import pipeline
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
 
 # Load the dataset
 with open('kayden_data.json', 'r') as file:
@@ -37,32 +42,25 @@ Kayden's resume is {kayden_data['resume']}.
 # Create the question answering pipeline
 qa_pipeline = pipeline('question-answering', model='distilbert-base-uncased-distilled-squad', tokenizer='distilbert-base-uncased', max_seq_len=384, doc_stride=128)
 
-# Define the chatbot function
-def chatbot(prompt):
-    # Use the question answering pipeline to get response 
-    response = qa_pipeline(question=prompt, context=context)
-    # Extract answer and score from response
+@app.route('/ask', methods=['POST'])
+def ask():
+    data = request.json
+    question = data.get('question', '')
+
+    if not question:
+        return jsonify({'error': 'No question provided'}), 400
+
+    # Get the answer from the pipeline
+    response = qa_pipeline(question=question, context=context)
     answer = response['answer']
     score = response['score']
 
-    print(f"Question: {prompt}")
-    print(f"Answer: {answer}")
-    print(f"Score: {score}")
-
     # Set a confidence threshold
     confidence_threshold = 0.24
-
-    # Check if the answer is relative to the context and above the confidence threshold
-    # If score is above confidence threshold return answer else return error string
     if score >= confidence_threshold:
-        return answer
+        return jsonify({'answer': answer, 'score': score})
     else:
-        return "I'm sorry, I do not have an answer to that question. Please ask me something else."
+        return jsonify({'answer': "I'm sorry, I do not have an answer to that question.", 'score': score})
 
-# Run the chatbot
-while True:
-    user_input = input("Ask a question (or type 'quit' to exit): ")
-    if user_input.lower() == 'quit':
-        break
-    else:
-        print(f"Actual Answer: {chatbot(user_input)}")
+if __name__ == '__main__':
+    app.run(debug=True)
