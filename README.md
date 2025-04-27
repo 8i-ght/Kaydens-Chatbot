@@ -10,6 +10,7 @@ The chatbot is using a pre-trained NLP model to understand and respond to user q
     - His hobbies, job, and school.
     - Contact information and social media links.
 - Built using a question-answering model from Hugging Face.
+- Accessible via a web interface
 
 ## Prequisties 
 
@@ -17,18 +18,15 @@ To run this chatbot, ensure you have the following installed:
 
 1. Python 3.7 or higher.
 2. Required Python libraries:
+ - `Flask`
+ - `Flask-CORS`
  - `PyTorch or TensorFlow`
  - `transformers`
 
 You can install the required libraries using:
 
 ```bash
-pip install PyTorch
-pip install transformers
+pip install flask flask-cors transformers torch
 ```
 
-## Future Plans
-
- - Make the chatbot more accessible
-    - Make it into a website using either Flask or Django
- - Add more onto the dataset
+Feel free to contribute or suggest improvements!
