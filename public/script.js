@@ -12,7 +12,7 @@ document.getElementById('send-button').addEventListener('click', async () => {
 
         // Send the question to backend
         try {
-            const response = await fetch('http://127.0.0.1:5000/ask', {
+            const response = await fetch('http://127.0.0.1:5000/https://kaydens-chatbot.onrender.com', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
