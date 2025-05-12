@@ -9,7 +9,8 @@ from transformers import pipeline
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://chatbot-4a6d5.web.app"])
+
 
 # Load the dataset
 with open('kayden_data.json', 'r') as file:
